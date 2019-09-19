@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{BFD958C4-5209-89E8-D1A0-F25854A4DC74}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameController.cs">
+    <Files>
+      <File FileName="Assets/Scripts/CardStackView.cs" Line="61" Column="12" />
+      <File FileName="Assets/Scripts/CardStack.cs" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="17" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="New Unity Project" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="GameController.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.New_220Unity_220Project PreferredExecutionTarget="52d4ace9-2873-4371-b5cf-aba663bcaefe" />
+</Properties>
