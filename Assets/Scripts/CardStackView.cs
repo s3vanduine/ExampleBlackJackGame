@@ -72,10 +72,10 @@ public class CardStackView : MonoBehaviour
         {
             foreach (int i in deck.GetCards())
             {
+                cardCount++;
                 float co = cardOffset * cardCount;
                 Vector3 temp = start + new Vector3(co, 0f);
                 AddCard(temp, i, cardCount);
-                cardCount++;
             }
         }
     }

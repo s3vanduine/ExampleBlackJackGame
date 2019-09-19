@@ -110,25 +110,34 @@ public class GameController : MonoBehaviour
         CardStackView view = dealer.GetComponent<CardStackView>();
         view.Toggle(dealersFirstCard, true);
         view.ShowCards();
-        while (dealer.HandValue() < 17)
+        while (dealer.HandValue() < 17 || (dealer.HandValue() < player.HandValue() && player.HandValue() <= 21))
         {
             HitDealer();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
         }
 
-        if (player.HandValue() > 21 || (dealer.HandValue() >= player.HandValue() && dealer.HandValue() <= 21))
+        //if player is bust or,
+        //if player is less than dealer or equal but on an odd number, player loses
+        if (player.HandValue() > 21 ||
+            (dealer.HandValue() > player.HandValue() && dealer.HandValue() <= 21) ||
+            (dealer.HandValue() == player.HandValue() && dealer.HandValue() % 2 == 1))
         {
             winnerText.text = "You've lost";
         }
-        else if ((player.HandValue() <= 21 && player.HandValue() > dealer.HandValue()) || dealer.HandValue() > 21)
+        //if player is under 22, and has a hand value greater than the dealer's, or the dealer is bust but the player is not,
+        //or the player and dealer have the same score but the number is even, the player wins.
+        else if ((player.HandValue() <= 21 && player.HandValue() > dealer.HandValue()) ||
+            (dealer.HandValue() > 21 && player.HandValue() <= 21) ||
+            (dealer.HandValue() == player.HandValue() && dealer.HandValue() % 2 == 0))
         {
             winnerText.text = "Winner!";
         }
-        else
+        //in case I missed any scenarios
+        else 
         {
-            winnerText.text = "The House Wins";
+            winnerText.text = "It's a tie?";
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         playAgainButton.interactable = true;
     }
 
