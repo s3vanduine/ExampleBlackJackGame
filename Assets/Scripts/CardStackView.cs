@@ -15,8 +15,20 @@ public class CardStackView : MonoBehaviour
     public GameObject cardPrefab;
 
     public void Toggle(int card, bool isFaceUp)
-    {
+    {      
         fetchedCards[card].IsFaceUp = isFaceUp;
+    }
+
+    public void FlipAnimation(int card)
+    {
+        //test code
+        //GameObject flipCard = (GameObject)Instantiate(cardPrefab);
+        GameObject flipCard = fetchedCards[card].Card;
+        CardFlipper flipper = flipCard.GetComponent<CardFlipper>();
+        CardModel model = flipCard.GetComponent<CardModel>();
+        flipper.FlipCard(model.cardBack, model.faces[card], card);
+        fetchedCards[card].IsFaceUp = true;
+        //end test
     }
 
     public void Clear()

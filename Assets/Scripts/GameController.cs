@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour
     public Button playAgainButton;
 
     public Text winnerText;
+    public Text playerScore;
+    public Text dealerScore;
 
     /*
      * Cards delt to each player
@@ -36,6 +38,7 @@ public class GameController : MonoBehaviour
             stickButton.interactable = false;
             StartCoroutine(DealersTurn());
         }
+        playerScore.text = player.HandValue().ToString();
     }
 
     public void Stick()
@@ -62,6 +65,9 @@ public class GameController : MonoBehaviour
         hitButton.interactable = true;
         stickButton.interactable = true;
 
+        playerScore.text = "0";
+        dealerScore.text = "?";
+
         StartGame();
     }
 
@@ -83,6 +89,7 @@ public class GameController : MonoBehaviour
             player.Push(deck.Pop());
             HitDealer();
         }
+        playerScore.text = player.HandValue().ToString();
     }
 
     void HitDealer()
@@ -107,18 +114,28 @@ public class GameController : MonoBehaviour
         hitButton.interactable = false;
         stickButton.interactable = false;
 
+        yield return new WaitForSeconds(2f);
+
         CardStackView view = dealer.GetComponent<CardStackView>();
-        view.Toggle(dealersFirstCard, true);
+        //Test
+        view.FlipAnimation(dealersFirstCard);
+        yield return new WaitForSeconds(1f);
+        //End test
+        //view.Toggle(dealersFirstCard, true); Removed for testing
+        dealerScore.text = dealer.HandValue().ToString();
+        yield return new WaitForSeconds(1.5f);
         view.ShowCards();
+
         while (dealer.HandValue() < 17 || (dealer.HandValue() < player.HandValue() && player.HandValue() <= 21))
         {
             HitDealer();
+            dealerScore.text = dealer.HandValue().ToString();
             yield return new WaitForSeconds(2f);
         }
 
         //if player is bust or,
         //if player is less than dealer or equal but on an odd number, player loses
-        if (player.HandValue() > 21 ||
+        if (player.HandValue() > 21  && player.HandValue() != dealer.HandValue()||
             (dealer.HandValue() > player.HandValue() && dealer.HandValue() <= 21) ||
             (dealer.HandValue() == player.HandValue() && dealer.HandValue() % 2 == 1))
         {
@@ -135,9 +152,9 @@ public class GameController : MonoBehaviour
         //in case I missed any scenarios
         else 
         {
-            winnerText.text = "It's a tie?";
+            winnerText.text = "What have you done?";
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         playAgainButton.interactable = true;
     }
 

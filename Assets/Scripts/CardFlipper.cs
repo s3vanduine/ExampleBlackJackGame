@@ -16,7 +16,7 @@ public class CardFlipper : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         model = GetComponent<CardModel>();
 
-        // exmpale: var cardFlipper = GetComponent<CardFlipper>();
+        // example: var cardFlipper = GetComponent<CardFlipper>();
     }
 
     public void FlipCard(Sprite startImage, Sprite endImage, int cardIndex)
@@ -47,14 +47,14 @@ public class CardFlipper : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        if(cardIndex == -1)
-        {
-            model.ToggleFace(false);
-        }
-        else
-        {
-            model.cardIndex = cardIndex;
-            model.ToggleFace(true);
-        }
+        //if(cardIndex == -1)
+        //{
+           // model.ToggleFace(false);
+        //}
+        //else
+        //{
+           // model.cardIndex = cardIndex;
+           // model.ToggleFace(true);
+        //}
     }
 }
