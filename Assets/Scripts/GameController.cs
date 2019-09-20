@@ -21,9 +21,9 @@ public class GameController : MonoBehaviour
 
     /*
      * Cards delt to each player
-     * First hist/stick/best
+     * First hit/stick/best
      * Dealer's turn: must have minimum of 17 score for hand before they can stick
-     * Dealer's cards: first card is hidde, subsequent cards are face up
+     * Dealer's cards: first card is hidden, subsequent cards are face up
      * 
      */
 
@@ -117,11 +117,10 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         CardStackView view = dealer.GetComponent<CardStackView>();
-        //Test
+        
         view.FlipAnimation(dealersFirstCard);
         yield return new WaitForSeconds(1f);
-        //End test
-        //view.Toggle(dealersFirstCard, true); Removed for testing
+        
         dealerScore.text = dealer.HandValue().ToString();
         yield return new WaitForSeconds(1.5f);
         view.ShowCards();
@@ -149,10 +148,9 @@ public class GameController : MonoBehaviour
         {
             winnerText.text = "Winner!";
         }
-        //in case I missed any scenarios
         else 
         {
-            winnerText.text = "What have you done?";
+            winnerText.text = "error";
         }
         yield return new WaitForSeconds(1f);
         playAgainButton.interactable = true;
